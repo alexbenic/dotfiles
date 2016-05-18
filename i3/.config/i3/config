@@ -1,0 +1,161 @@
+# Constants
+  set $mod Mod4
+
+  set $base00 #101218
+  set $base01 #1f222d
+  set $base02 #252936
+  set $base03 #7780a1
+  set $base04 #C0C5CE
+  set $base05 #d1d4e0
+  set $base06 #C9CCDB
+  set $base07 #ffffff
+  set $base08 #ee829f
+  set $base09 #f99170
+  set $base0A #ffefcc
+  set $base0B #a5ffe1
+  set $base0C #97e0ff
+  set $base0D #97bbf7
+  set $base0E #c0b7f9
+  set $base0F #fcc09e
+
+  set $bg-color 	   #2f343f
+  set $inactive-bg-color   #2f343f
+  set $text-color          #f3f4f5
+  set $inactive-text-color #676E7D
+  set $urgent-bg-color     #E53935
+
+  set $workspace1 "1 &#xf120;"
+  set $workspace2 "2 "
+  set $workspace3 "3 &#xf268;"
+  set $workspace4 ""
+  set $workspace5 ""
+  set $workspace6 ""
+  set $workspace7 ""
+  set $workspace8 "8 &#xf0e0;"
+  set $workspace9 "9 "
+  set $workspace10 "10 &#xf001;"
+
+# General Settings
+  font pango:System San Francisco Display 10
+  floating_modifier $mod
+  hide_edge_borders both
+  new_window pixel 1
+
+# Window related keybindings
+  bindsym $mod+Return exec i3-sensible-terminal
+  bindsym $mod+Shift+q kill
+  bindsym $mod+d exec rofi -show run -lines 3 -eh 2 -width 100 -padding 400 -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "System San Francisco Display 18"
+  bindsym $mod+j focus left
+  bindsym $mod+k focus down
+  bindsym $mod+l focus up
+  bindsym $mod+ccaron focus right
+  bindsym $mod+Shift+j move left
+  bindsym $mod+Shift+k move down
+  bindsym $mod+Shift+l move up
+  bindsym $mod+Shift+ccaron move right
+  bindsym $mod+h split h
+  bindsym $mod+v split v
+  bindsym $mod+f fullscreen toggle
+  bindsym $mod+s layout stacking
+  bindsym $mod+w layout tabbed
+  bindsym $mod+e layout toggle split
+  bindsym $mod+Shift+space floating toggle
+  bindsym $mod+space focus mode_toggle
+  bindsym $mod+Shift+s sticky toggle
+  bindsym $mod+shift+x exec i3exit lock
+  bindsym $mod+r mode "  "
+  bindsym $mod+Shift+c reload
+  bindsym $mod+Shift+r restart
+  bindsym $mod+Escape mode "$control"
+
+# Switch to workspace
+  bindsym $mod+1 workspace $workspace1
+  bindsym $mod+2 workspace $workspace2
+  bindsym $mod+3 workspace $workspace3
+  bindsym $mod+4 workspace $workspace4
+  bindsym $mod+5 workspace $workspace5
+  bindsym $mod+6 workspace $workspace6
+  bindsym $mod+7 workspace $workspace7
+  bindsym $mod+8 workspace $workspace8
+  bindsym $mod+9 workspace $workspace9
+  bindsym $mod+0 workspace $workspace10
+
+# Move focused container to workspace
+  bindsym $mod+Shift+1 move container to workspace $workspace1
+  bindsym $mod+Shift+2 move container to workspace $workspace2
+  bindsym $mod+Shift+3 move container to workspace $workspace3
+  bindsym $mod+Shift+4 move container to workspace $workspace4
+  bindsym $mod+Shift+5 move container to workspace $workspace5
+  bindsym $mod+Shift+6 move container to workspace $workspace6
+  bindsym $mod+Shift+7 move container to workspace $workspace7
+  bindsym $mod+Shift+8 move container to workspace $workspace8
+  bindsym $mod+Shift+9 move container to workspace $workspace9
+  bindsym $mod+Shift+0 move container to workspace $workspace10
+
+# Program workspace
+  assign [instance="editor"] $workspace2
+  assign [class="chromium"] $workspace3
+  assign [instance="mutt"] $workspace8
+  assign [instance="irssi"] $workspace9
+  assign [instance="ncmpcpp"] $workspace10
+
+
+# Shutdown/Restart/Suspend/Lock
+  set $control     System Control |  : D |  -> R |  -> S |  -> L
+  mode "$control" {
+        bindsym d exec i3exit shutdown;  mode "default"
+        bindsym r exec i3exit reboot;    mode "default"
+        bindsym s exec i3exit suspend;   mode "default"
+        bindsym l exec i3exit logout;    mode "default"
+
+        bindsym Escape mode "default"
+  }
+
+# Resize
+  mode "  " {
+        bindsym j resize shrink width 10 px or 10 ppt
+        bindsym k resize grow height 10 px or 10 ppt
+        bindsym l resize shrink height 10 px or 10 ppt
+        bindsym ccaron resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+  }
+
+
+# Widow Colours
+#                         border  background text    indicator
+  client.focused          $base01 $base01    $base07 $base0F
+  client.focused_inactive $base02 $base02    $base03 $base0F
+  client.unfocused        $base02 $base02    $base03 $base0F
+  client.urgent           $base02 $base08    $base00 $base0F
+
+# i3bar
+  bar {
+        font pango:System San Francisco Display, FontAwesome 9
+        status_command i3blocks -c ~/.config/i3/i3blocks.conf
+        tray_output primary
+        strip_workspace_numbers yes
+        position top
+
+        colors {
+                separator $base03
+                background $base01
+#                                  border  background text
+                focused_workspace  $base01 $base01    $base07
+                active_workspace   $base01 $base02    $base03
+                inactive_workspace $base01 $base01    $base03
+                urgent_workspace   $base01 $base01    $base08
+        }
+  }
+
+
+# Startup
+  exec_always feh --bg-scale ~/Pictures/Wallpaper/wallpaper.jpg
+  exec --no-startup-id spacecadet set
+  exec --no-startup-id dunst
+  exec --no-startup-id chromium
+  exec --no-startup-id urxvt +sb -name editor -e vim
+  exec --no-startup-id urxvt +sb -name mutt -e mutt
+  exec --no-startup-id urxvt +sb -name weechat -e weechat
+  exec --no-startup-id urxvt +sb -name ncmpcpp -e ncmpcpp
