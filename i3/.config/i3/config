@@ -151,7 +151,7 @@
 
 
 # Startup
-  exec_always feh --bg-scale ~/Pictures/Wallpaper/wallpaper.jpg
+  exec_always feh --bg-scale ~/.wallpapers/windmill.jpg
   exec --no-startup-id spacecadet set
   exec --no-startup-id dunst
   exec --no-startup-id chromium
