@@ -1,0 +1,8 @@
+.netrwhist
+spell/
+plugged/
+autoload/plug.vim
+autoload/plug.vim.old
+snapshot.vim
+.init.vim-rplugin~
+temp
