@@ -9,8 +9,8 @@ call plug#end()
 for file in split(glob(Dot('modules/plugins/*.vim')), '\n')
   let name = fnamemodify(file, ':t:r')
 
-	if exists('g:plugs["' . name . '"]')
-		exec 'source' file
+  if exists('g:plugs["' . name . '"]')
+    exec 'source' file
   endif
 
 endfor

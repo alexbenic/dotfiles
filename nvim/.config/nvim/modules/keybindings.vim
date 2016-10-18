@@ -15,7 +15,14 @@ nnoremap Q <nop>
 nmap gp `[v`]
 "nerdtree
 nnoremap <silent> <Leader>n :NERDTreeToggle<CR>
-" text util
+" util
+cmap w!! %!sudo tee > /dev/null %
+cnoremap %% <C-R>=expand('%:p:h').'/'<CR>
+noremap <Leader>cd :cd %:p:h<CR>
+map <Leader>e :e %%
+"map <Leader>t :tabe %%
+"map <Leader>s :split %%
+" util#text
 map <Leader>T :%s/\s\+$//e<CR>
 map <Leader>U :g/^$/d<CR>
 map <Leader>R :retab<CR>
@@ -31,13 +38,11 @@ nnoremap <Leader>gR :Gread<CR>
 nnoremap <Leader>gg :Git
 nnoremap <Leader>gd :Gdiff<CR>
 "misc
-nmap <Leader>l :set list!<CR>
-nmap <silent> <Leader>s :set spell!<CR>
 nnoremap <Leader>w :w<CR>
+nmap <Leader><Leader> V
 "open | source vimrc
 nnoremap <Leader>ev :e $MYVIMRC<CR>
 nnoremap <Leader>es :so $MYVIMRC<CR>
-"nmap <Leader><Leader> V
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
