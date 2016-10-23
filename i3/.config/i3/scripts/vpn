@@ -24,10 +24,19 @@
 readonly WARNING=#FF5252
 readonly DEFAULT="${BLOCK_COLOR:-#C9CCDB}"
 
-result=$(nmcli -t -f type,state,connection d |
-                            egrep '^tun|tap' |
-                            grep 'connected' |
-                            awk -F':' '{print $3}')
+#NMCLI
+#result is the name of the interface connected
+#to the vpn tunnel or empty if it there is no
+#connection
+#result=$(nmcli -t -f type,state,connection d |
+                            #egrep '^tun|tap' |
+                            #grep 'connected' |
+                            #awk -F':' '{print $3}')
+
+
+#NETCTL | general
+#shows existence of vpn
+result=$(ip route get 2 | egrep "tun|tap")
 
 echo " "        #long text
 echo " "        #short text
