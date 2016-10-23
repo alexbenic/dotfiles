@@ -40,9 +40,20 @@ nnoremap <Leader>gd :Gdiff<CR>
 "misc
 nnoremap <Leader>w :w<CR>
 nmap <Leader><Leader> V
+"nmap <Leader>te :below 10sp term://$SHELL/<CR>i
 "open | source vimrc
 nnoremap <Leader>ev :e $MYVIMRC<CR>
 nnoremap <Leader>es :so $MYVIMRC<CR>
 " Move visual block
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
+
+"markdown
+ fun! s:PreviewMarkdown()
+   let md = expand('%:p')
+   let command = 'pandoc ' . md . '| lynx -vikeys -stdin'
+   exe 'vnew'
+   exe 'te ' . command
+ endf
+
+ command! PreviewMarkdown call s:PreviewMarkdown()
