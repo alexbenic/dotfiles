@@ -110,7 +110,7 @@ weather()
   URL="api.openweathermap.org/data/2.5/weather?q=Nis,Serbia\&units=metric"
   data=$(curl -s ${URL}\&APIKEY=${APIKEY} | jq .main.temp)
 
-  printf "%.0f °c" $data
+  printf "\uf0c2 %.0f°c" $data
 }
 
 CPU_INFO=`cpu`
