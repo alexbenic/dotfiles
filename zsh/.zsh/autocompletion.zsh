@@ -1,15 +1,15 @@
-#                 ██      
-#                ░██      
-#  ██████  ██████░██      
-# ░░░░██  ██░░░░ ░██████  
-#    ██  ░░█████ ░██░░░██ 
-#   ██    ░░░░░██░██  ░██ 
-#  ██████ ██████ ░██  ░██ 
-# ░░░░░░ ░░░░░░  ░░   ░░  
+#                 ██
+#                ░██
+#  ██████  ██████░██
+# ░░░░██  ██░░░░ ░██████
+#    ██  ░░█████ ░██░░░██
+#   ██    ░░░░░██░██  ░██
+#  ██████ ██████ ░██  ░██
+# ░░░░░░ ░░░░░░  ░░   ░░
 #
 #█▓▒░ autocompletion systems
-autoload -Uz compinit
-compinit
+# autoload -Uz compinit
+# compinit
 #autoload -U ~/.zsh/completion/*(:t)
 zstyle ':completion:*' auto-description 'specify: %d'
 zstyle ':completion:*' completer _expand _complete _correct _approximate

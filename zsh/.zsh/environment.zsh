@@ -11,13 +11,18 @@
 #HIST_STAMPS=mm/dd/yyyy
 
 #█▓▒░ paths
-export PATH=$HOME/.cargo/bin/:$HOME/Tools/scripts:/usr/local/bin:$PATH
 export GOPATH=$HOME/Cloud/Projects/go
 export MANPATH=/usr/local/man:$MANPATH
+export PATH=$HOME/.cargo/bin/:$GOPATH/bin:/usr/local/bin:$PATH
 
 #█▓▒░ preferred editor for local and remote sessions
 export EDITOR=nvim
 export VISUAL=nvim
+export BROWSER=chromium
+
+#█▓▒░ enchancd
+export ENHANCD_FILTER="fzf"
+export ENHANCD_DISABLE_DOT=1
 
 #█▓▒░ language
 export LC_COLLATE=en_US.UTF-8
