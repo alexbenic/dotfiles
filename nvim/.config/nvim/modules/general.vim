@@ -40,3 +40,5 @@ set hlsearch
 set pumheight=10
 "color
 colorscheme industry
+"font
+set guifont=Inconsolata\ for\ Powerline\ Nerd\ Font\ Complete

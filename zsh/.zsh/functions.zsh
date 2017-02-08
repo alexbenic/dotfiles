@@ -31,3 +31,14 @@ transfer() {
 markdown() {
     pandoc -s -f markdown -t man "$*" | man -l -
 }
+
+#█▓▒░mission-control
+mission-control() {
+    # mpv --no-terminal http://somafm.com/missioncontrol.pls 2>&1 >/dev/null &
+    mpv http://somafm.com/missioncontrol.pls
+}
+
+#█▓▒yt-audio
+function mm() {
+    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
+}

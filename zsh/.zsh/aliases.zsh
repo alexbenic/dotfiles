@@ -25,6 +25,7 @@ alias -g L="| $PAGER"
 alias -g P=' --help | less'
 alias -g R="| ruby -e"
 alias -g S="| sed"
+alias -g X="| xclip -selection clipboard"
 alias -g T="| tail"
 alias -g V="| vim -R -"
 alias -g U=' --help | head'

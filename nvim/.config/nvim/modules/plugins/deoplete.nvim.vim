@@ -8,10 +8,10 @@ let g:deoplete#omni#functions.javascript = [
   \]
 
 let g:deoplete#omni_patterns = {}
-"let g:deoplete#omni_patterns.elm = '\.'
+let g:deoplete#omni_patterns.elm = '\.'
 
 let g:deoplete#ignore_sources = {}
-"let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag', 'file', 'neosnippet']
+" let g:deoplete#ignore_sources._ = ['buffer', 'member', 'tag', 'file', 'neosnippet']
 
 call deoplete#custom#set('_', 'matchers', ['matcher_fuzzy'])
 call deoplete#custom#set('_', 'converters', ['converter_remove_paren'])

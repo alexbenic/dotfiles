@@ -10,6 +10,11 @@
 	default = simple
 [alias]
 	lol = log --graph --decorate --pretty=oneline --abbrev-commit --all
-  gs  = git status
+  stat  = status -sb
+	unstage = reset HEAD --
 [github]
   user = alexbenic
+[core]
+	autocrlf = input
+[rerere]
+	enabled = true

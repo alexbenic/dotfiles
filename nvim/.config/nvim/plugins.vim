@@ -1,61 +1,76 @@
-"Snippets
-Plug 'SirVer/ultisnips'
-      \ | Plug 'honza/vim-snippets'
-"Ctrl-P
-Plug 'junegunn/fzf',              { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-"Eyecandy
+"general#eyecandy
+Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-"General
-Plug 'neomake/neomake'
-Plug 'Shougo/deoplete.nvim',                      { 'do' : ':UpdateRemotePlugins' }
-      \ | Plug 'carlitux/deoplete-ternjs',        { 'for': 'javascript', 'do' : 'npm install -g tern' }
-      \ | Plug 'zchee/deoplete-go',               { 'for': 'go', 'do' : 'make' }
-      \ | Plug 'mhartington/deoplete-typescript', { 'for': 'typescript' }
-      \ | Plug 'sebastianmarkow/deoplete-rust',   { 'for': 'rust' }
-      \ | Plug 'zchee/deoplete-clang',     { 'for': 'c' }
-
-Plug 'scrooloose/nerdtree',                { 'on':  'NERDTreeToggle' }
-Plug 'scrooloose/nerdcommenter'
+"general#qol
+Plug 'mhinz/vim-startify'
 Plug 'jiangmiao/auto-pairs'
-Plug 'justinmk/vim-sneak'
 Plug 'junegunn/vim-easy-align'
 Plug 'christoomey/vim-tmux-navigator'
-Plug 'airblade/vim-gitgutter'
-"Plug 'Chiel92/vim-autoformat'
-Plug 'majutsushi/tagbar'
+
+"util#general
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'wellle/targets.vim'
-Plug 'editorconfig/editorconfig-vim'
+Plug 'airblade/vim-gitgutter'
+Plug 'justinmk/vim-sneak'
+Plug 'justinmk/vim-dirvish'
+Plug 'AndrewRadev/splitjoin.vim'
+Plug 'majutsushi/tagbar'
+"util#wiki
+Plug 'vimwiki/vimwiki'
+Plug 'tbabej/taskwiki'
+"util#make
+" Plug 'neomake/neomake'
+Plug 'w0rp/ale'
+"util#test
+Plug 'janko-m/vim-test'
+"util#snippets
+Plug 'SirVer/ultisnips'
+      \ | Plug 'honza/vim-snippets'
+"util#completion
+Plug 'Shougo/deoplete.nvim',                      { 'do' : ':UpdateRemotePlugins' }
+      \ | Plug 'carlitux/deoplete-ternjs',        { 'for': 'javascript', 'do' : 'npm install -g tern' }
+      \ | Plug 'zchee/deoplete-jedi',             { 'for': 'python', 'do' : 'pip install jedi' }
+      \ | Plug 'zchee/deoplete-go',               { 'for': 'go', 'do' : 'make' }
+      \ | Plug 'sebastianmarkow/deoplete-rust',   { 'for': 'rust' }
+      \ | Plug 'zchee/deoplete-clang',     { 'for': 'c' }
+"util#ctrl-p
+Plug 'junegunn/fzf',              { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
-"javascript
+
+"lang#javascript
 Plug 'othree/jspc.vim',                        { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'elzr/vim-json',                          { 'for': ['javascript', 'javascript.jsx'] }
 Plug 'moll/vim-node',                          { 'for': 'javascript' }
 Plug 'digitaltoad/vim-jade',                   { 'for': 'pug' }
 Plug 'pangloss/vim-javascript',                { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'leafgarland/typescript-vim',             { 'for': 'typescript' }
 Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-
-"elm
-"Plug 'ElmCast/elm-vim', { 'for': 'elm' }
-
+"lang#python
+Plug 'davidhalter/jedi-vim'
+"lang#elm
+" Plug 'ElmCast/elm-vim', { 'for': 'elm' }
+Plug 'ElmCast/elm-vim'
+"lang#rust
 Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-
-"go
+"lang#elixir
+Plug 'elixir-lang/vim-elixir'
+Plug 'slashmili/alchemist.vim'
+"lang#go
 Plug 'fatih/vim-go', { 'for': 'go' }
-
-"other
-Plug 'mattn/emmet-vim'
+"lang#html
 Plug 'othree/html5.vim',       { 'for': 'html' }
+Plug 'mattn/emmet-vim'
+"lang#css
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'othree/csscomplete.vim'
 "other#writing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+"other#editorconfig
+Plug 'editorconfig/editorconfig-vim'
