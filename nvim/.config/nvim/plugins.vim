@@ -2,11 +2,13 @@
 Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'Yggdroot/indentLine'
 "general#qol
 Plug 'mhinz/vim-startify'
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'christoomey/vim-tmux-navigator'
+" Plug 'cohama/lexima.vim' "this or auto-pairs
 
 "util#general
 Plug 'tpope/vim-repeat'
@@ -20,11 +22,12 @@ Plug 'justinmk/vim-sneak'
 Plug 'justinmk/vim-dirvish'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'majutsushi/tagbar'
+Plug 'sbdchd/neoformat'
 "util#wiki
 Plug 'vimwiki/vimwiki'
 Plug 'tbabej/taskwiki'
+Plug 'blindFS/vim-taskwarrior'
 "util#make
-" Plug 'neomake/neomake'
 Plug 'w0rp/ale'
 "util#test
 Plug 'janko-m/vim-test'
@@ -42,33 +45,14 @@ Plug 'Shougo/deoplete.nvim',                      { 'do' : ':UpdateRemotePlugins
 Plug 'junegunn/fzf',              { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 
-
-"lang#javascript
-Plug 'othree/jspc.vim',                        { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'mxw/vim-jsx',                            { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'elzr/vim-json',                          { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'moll/vim-node',                          { 'for': 'javascript' }
-Plug 'digitaltoad/vim-jade',                   { 'for': 'pug' }
-Plug 'pangloss/vim-javascript',                { 'for': ['javascript', 'javascript.jsx'] }
-Plug 'othree/javascript-libraries-syntax.vim', { 'for': 'javascript' }
-"lang#python
-Plug 'davidhalter/jedi-vim'
-"lang#elm
-" Plug 'ElmCast/elm-vim', { 'for': 'elm' }
-Plug 'ElmCast/elm-vim'
-"lang#rust
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
+"lang
+Plug 'sheerun/vim-polyglot'
 "lang#elixir
-Plug 'elixir-lang/vim-elixir'
-Plug 'slashmili/alchemist.vim'
+Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 "lang#go
-Plug 'fatih/vim-go', { 'for': 'go' }
-"lang#html
-Plug 'othree/html5.vim',       { 'for': 'html' }
-Plug 'mattn/emmet-vim'
-"lang#css
-Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
-Plug 'othree/csscomplete.vim'
+Plug 'fatih/vim-go',            {'for' : 'go'}
+"lang#moonscript
+Plug 'leafo/moonscript-vim'
 "other#writing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'

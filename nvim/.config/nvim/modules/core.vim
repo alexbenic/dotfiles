@@ -14,4 +14,17 @@ nnoremap <silent> <M-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <M-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
 
+"wiki TODO:move to separate file
+let g:vimwiki_list = [{
+      \ 'path': '~/vimwiki',
+      \ 'nested_syntexes': {
+      \   'ruby': 'ruby',
+      \   'elixir': 'elixir',
+      \   'javascript': 'javascript',
+      \   'bash': 'sh',
+      \  },
+      \  'syntax': 'markdown',
+      \  'ext': '.md'
+      \ }]
+
 "let g:python3_host_prog='/usr/lib/python3.5/site-packages/neovim/api/nvim.py'

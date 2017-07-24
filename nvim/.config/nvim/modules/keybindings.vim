@@ -28,6 +28,7 @@ map <Leader>U :g/^$/d<CR>
 map <Leader>R :retab<CR>
 "nnoremap <silent> <leader>b :nohlsearch<CR>
 "fugitive
+nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gr :Gremove<CR>
 nnoremap <Leader>gl :Glog<CR>
@@ -59,5 +60,4 @@ nnoremap <Leader>d :cclose<CR>
    exe 'vnew'
    exe 'te ' . command
  endf
-
  command! PreviewMarkdown call s:PreviewMarkdown()

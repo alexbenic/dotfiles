@@ -39,6 +39,6 @@ mission-control() {
 }
 
 #█▓▒yt-audio
-function mm() {
-    mpv --no-video --ytdl-format=bestaudio ytdl://ytsearch10:"$@"
+function ytplay() {
+    mpv --no-video --ytdl-format=bestaudio "$@"
 }

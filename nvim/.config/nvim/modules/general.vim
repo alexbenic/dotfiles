@@ -39,6 +39,7 @@ set smartcase
 set hlsearch
 set pumheight=10
 "color
-colorscheme industry
+"colorscheme industry
+colorscheme despacio
 "font
 set guifont=Inconsolata\ for\ Powerline\ Nerd\ Font\ Complete
