@@ -18,3 +18,5 @@
 	autocrlf = input
 [rerere]
 	enabled = true
+[init]
+	templatedir = /home/beni/.gh-license/git-templates

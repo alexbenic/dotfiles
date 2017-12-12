@@ -3,6 +3,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'Yggdroot/indentLine'
+Plug 'romainl/Apprentice', { 'branch': 'fancylines-and-neovim' }
 "general#qol
 Plug 'mhinz/vim-startify'
 Plug 'jiangmiao/auto-pairs'
@@ -23,10 +24,6 @@ Plug 'justinmk/vim-dirvish'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'majutsushi/tagbar'
 Plug 'sbdchd/neoformat'
-"util#wiki
-Plug 'vimwiki/vimwiki'
-Plug 'tbabej/taskwiki'
-Plug 'blindFS/vim-taskwarrior'
 "util#make
 Plug 'w0rp/ale'
 "util#test
@@ -50,9 +47,12 @@ Plug 'sheerun/vim-polyglot'
 "lang#elixir
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 "lang#go
-Plug 'fatih/vim-go',            {'for' : 'go'}
+Plug 'fatih/vim-go',            { 'for' : 'go' }
 "lang#moonscript
 Plug 'leafo/moonscript-vim'
+"lang#scheme
+Plug 'kovisoft/slimv'
+
 "other#writing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'

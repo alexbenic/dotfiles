@@ -153,5 +153,6 @@
 # Startup
   exec_always feh --bg-scale ~/.wallpapers/windmill.jpg
   exec --no-startup-id dunst
+  exec --no-startup-id /usr/lib/kdeconnectd
   exec --no-startup-id chromium
   exec --no-startup-id termite

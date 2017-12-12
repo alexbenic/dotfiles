@@ -43,3 +43,8 @@ set pumheight=10
 colorscheme despacio
 "font
 set guifont=Inconsolata\ for\ Powerline\ Nerd\ Font\ Complete
+
+"slimv#temp
+let g:slimv_keybindings = 2
+let g:slimv_schema = '/usr/bin/csi'
+let g:slimv_swank_scheme = "! xterm -e 'csi -q -s /home/beni/bin/server.scm' &"
