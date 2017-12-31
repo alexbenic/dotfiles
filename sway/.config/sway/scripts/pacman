@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+#COLORS
+readonly WARNING=#FF5252
+readonly DEFAULT=#C9CCDB
+#color=
+
+packages="$(yaourt -Qua | wc -l)"
+
+echo "${packages}"
+echo "${packages}"
+
+if (( "$packages" == 0 ));
+then
+    echo "${DEFAULT}"
+else
+    echo "${WARNING}"
+fi

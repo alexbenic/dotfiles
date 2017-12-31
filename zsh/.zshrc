@@ -19,13 +19,14 @@ source ~/.zplug/init.zsh
 #█▓▒░config#fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #█▓▒░config#nvim
-source /usr/share/nvm/init-nvm.sh
-#█▓▒░config#autoenv
-source /usr/share/autoenv-git/activate.sh
-#█▓▒░config#virtualenvwrapper
-# source /usr/bin/virtualenvwrapper.sh
-#█▓▒░config#workon_dir
-# export WORKON_HOME=~/.Envs
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+#█▓▒░config#rvm
+export PATH="$PATH:$HOME/.rvm/bin"
+#█▓▒░config#spaceship
+SPACESHIP_VI_MODE_SHOW=false
+SPACESHIP_BATTERY_SHOW=false
 
 #█▓▒░zplug#init
 if ! zplug check --verbose; then
