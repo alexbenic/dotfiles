@@ -3,7 +3,6 @@ set $mod Mod4
 set $term termite
 set $lockscreen ~/.local/lock-screen
 set $menu rofi -show run & swaymsg [title="rofi"] focus
-# set $menu ~/.local/bin/rofirun
 
 set $workspace1 "1 &#xf120;"
 set $workspace2 "2 "
