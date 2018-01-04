@@ -33,6 +33,7 @@ let g:LanguageClient_serverCommands = {
 let g:ale_linters = {
       \'javascript' : ['eslint'],
       \'elm' : ['make'],
+      \'coffescript': ['coffelint'],
   \}
 " show errors in quicklist
 let g:ale_set_loclist = 0
