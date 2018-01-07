@@ -56,5 +56,7 @@ Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 "other#editorconfig
 Plug 'editorconfig/editorconfig-vim'
+"other#tasks
+Plug 'blindFS/vim-taskwarrior'
 
 call plug#end()
