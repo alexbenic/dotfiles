@@ -137,6 +137,8 @@ if has("gui_macvim")
   autocmd GUIEnter * set vb t_vb=
 endif
 
+" Smarter line joins
+set formatoptions+=j
 
 " Add a bit extra margin to the left
 set foldcolumn=1
