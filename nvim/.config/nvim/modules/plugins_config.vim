@@ -78,6 +78,7 @@ let g:neoformat_javascript_prettier = {
 " json
 let g:neoformat_json_prettier = {
       \ 'exe': 'prettier',
+      \ 'args': ['--parser json'],
       \ 'stdin': 1,
       \}
 let g:neoformat_enabled_javascript = ['prettier']
