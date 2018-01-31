@@ -170,6 +170,7 @@ nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
 " => fugitive
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>gw :Gwrite<CR>
+nnoremap <Leader>gc :Gcommit<CR>
 nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gr :Gremove<CR>
 nnoremap <Leader>gl :Glog<CR>
