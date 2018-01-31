@@ -11,17 +11,16 @@
 #█▓▒░ vi
 set -o vi
 
-#█▓▒░zplug#config
-#temp workaround
-# unset ZSH_CACHE_FILE
+#█▓▒░init#zplug
 source ~/.zplug/init.zsh
+#█▓▒░init#keychain
+eval $(keychain --eval --quiet id_rsa ~/.ssh/id_rsa)
 
 #█▓▒░config#fzf
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 #█▓▒░config#nvim
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 #█▓▒░config#rvm
 export PATH="$PATH:$HOME/.rvm/bin"
 #█▓▒░config#spaceship
