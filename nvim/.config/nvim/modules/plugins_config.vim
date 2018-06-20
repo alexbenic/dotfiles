@@ -3,7 +3,10 @@
 "    -> language-client
 "    -> ale
 "    -> fzf
+"    -> projections
 "    -> neoformat
+"    -> deoplete
+"    -> nvim-typescript
 "    -> vim-airline
 "    -> tagbar
 "    -> editorconfig
@@ -31,10 +34,20 @@ let g:LanguageClient_serverCommands = {
 " => ale
 """"""""""""""""""""""""""""""
 let g:ale_linters = {
-      \'javascript' : ['eslint'],
+      \'javascript' : ['eslint', 'flow'],
+      \'typescript' : ['tsserver', 'typecheck', 'tslint', 'prettier'],
       \'elm' : ['make'],
+      \'nim' : ['nim check'],
       \'coffescript': ['coffelint'],
   \}
+
+let g:ale_fixers = {
+      \'javascript' : ['prettier', 'eslint'],
+      \'jsx' : ['prettier', 'eslint'],
+      \'typescript' : ['prettier', 'tslint'],
+  \}
+
+nnoremap <silent><Leader>ff :ALEFix<CR>
 " show errors in quicklist
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
@@ -43,6 +56,8 @@ let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 " ale signs
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
+
+nnoremap <Leader>? :ALEDetail<CR>
 
 """"""""""""""""""""""""""""""
 " => fzf
@@ -56,34 +71,94 @@ let g:fzf_action = {
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
 " keybindings
-nnoremap <silent> <C-p>           :Files<CR>
-nnoremap <silent> <Leader><Enter> :Buffers<CR>
-nnoremap <silent> <Leader>a       :Ag<CR>
-nnoremap <silent> <Leader>ta      :Tags<CR>
+nnoremap <silent> <C-p>                 :Files<CR>
+nnoremap <silent> <Leader><Enter>       :Buffers<CR>
+nnoremap <silent> <Leader>a             :Ag<CR>
+nnoremap <silent> <Leader>ag            :Ag <C-R><C-W><CR>
+nnoremap <silent> <Leader><Leader>      :BLines<CR>
+nnoremap <silent> <Leader>ta            :Tags<CR>
+nnoremap <silent> <Leader>l             :Lines<CR>
+nnoremap <silent> <Leader>bc            :BCommits<CR>
+nnoremap <silent> <Leader>gs            :GFiles?<CR>
+
+""""""""""""""""""""""""""""""
+" => projections
+""""""""""""""""""""""""""""""
+let g:projectionist_heuristics = {
+      \ '*.component.js': {
+      \   'alternate': [
+      \     '{dirname}/{basename}.spec.js',
+      \     '{dirname}/{basename}.test.js',
+      \   ],
+      \   'type': 'source',
+      \ },
+      \ '*.spec.js': {
+      \   'alternate': [
+      \     '{dirname}/{basename}.component.js',
+      \     '{dirname}/{basename}.js',
+      \   ],
+      \   'type': 'test',
+      \ }
+      \ }
+
+nnoremap <leader>aa :A<CR>
 
 """"""""""""""""""""""""""""""
 " => neoformat
 """"""""""""""""""""""""""""""
+"auto
 autocmd BufWritePre *.js Neoformat
-" autocmd BufWritePre *.json Neoformat
+autocmd BufWritePre *.vue Neoformat
+autocmd BufWritePre *.json Neoformat
+autocmd BufWritePre *.rs Neoformat
+
 "general
 let g:neoformat_basic_format_trim = 1
 let g:neoformat_only_msg_on_error = 1
 "javascript
 let g:neoformat_javascript_prettier = {
       \ 'exe': 'prettier',
-      \ 'args': ['--parser flow', '--single-quote', '--trailing-comma es5', '--no-semi'],
+      \ 'args': ['--single-quote', '--trailing-comma es5'],
+      \ 'stdin': 1,
+      \}
+"vue
+let g:neoformat_vue_prettier = {
+      \ 'exe': 'prettier',
+      \ 'args': ['--single-quote', '--trailing-comma es5'],
       \ 'stdin': 1,
       \}
 " json
-" let g:neoformat_json_prettier = {
-"       \ 'exe': 'prettier',
-"       \ 'args': ['--parser json'],
-"       \ 'stdin': 1,
-"       \}
-let g:neoformat_enabled_javascript = ['prettier']
-" let g:neoformat_enabled_json = ['prettier']
+let g:neoformat_json_prettier = {
+      \ 'exe': 'prettier',
+      \ 'args': ['--parser json'],
+      \ 'stdin': 1,
+      \}
+let g:neoformat_typescript_prettier = {
+      \ 'exe': 'prettier',
+      \ 'args': ['--parser typescript', '--trailing-comma es5'],
+      \ 'stdin': 1,
+      \}
 
+let g:neoformat_rust_rustfmt = {
+      \ 'exe': 'rustmft',
+      \ 'stdin': 1,
+      \}
+
+let g:neoformat_enabled_javascript = ['prettier']
+let g:neoformat_enabled_vue = ['prettier']
+let g:neoformat_enabled_json = ['prettier']
+let g:neoformat_enabled_rust = ['rustfmt']
+
+""""""""""""""""""""""""""""""
+" => deoplete
+""""""""""""""""""""""""""""""
+let g:deoplete#enable_at_startup = 1
+
+""""""""""""""""""""""""""""""
+" => nvim-typescript
+""""""""""""""""""""""""""""""
+let g:nvim_typescript#type_info_on_hold = 1
+let g:nvim_typescript#default_mappings = 1
 
 """"""""""""""""""""""""""""""
 " => vim-airline
@@ -101,6 +176,7 @@ let g:airline_right_alt_sep = ''
 let g:airline_symbols.branch = ''
 let g:airline_symbols.readonly = ''
 let g:airline_symbols.linenr = ''
+let g:airline#extensions#tabline#enabled = 1
 
 
 """"""""""""""""""""""""""""""
@@ -112,6 +188,11 @@ nmap <F8> :TagbarToggle<CR>
 " => editorconfig
 """"""""""""""""""""""""""""""
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+
+""""""""""""""""""""""""""""""
+" => vim-filer
+""""""""""""""""""""""""""""""
+let g:vimfiler_as_default_explorer = 1
 
 """"""""""""""""""""""""""""""
 " => vim-easy-align
@@ -133,9 +214,9 @@ function! s:build_go_files()
 endfunction
 
 let g:go_list_type = "quickfix"
-let g:go_fmt_command = "goimports"
+" let g:go_fmt_command = "goimports"
 let g:go_metalinter_autosave = 1
-" let g:go_metalinter_autosave_enabled = ['vet', 'golint']
+let g:go_metalinter_autosave_enabled = ['vet', 'golint']
 let g:go_metalinter_deadline = "5s"
 let g:go_auto_type_info = 1
 
@@ -171,7 +252,6 @@ nnoremap <silent> <M-\> :TmuxNavigatePrevious<cr>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 nnoremap <Leader>gw :Gwrite<CR>
 nnoremap <Leader>gc :Gcommit<CR>
-nnoremap <Leader>gs :Gstatus<CR>
 nnoremap <Leader>gr :Gremove<CR>
 nnoremap <Leader>gl :Glog<CR>
 nnoremap <Leader>gb :Gblame<CR>

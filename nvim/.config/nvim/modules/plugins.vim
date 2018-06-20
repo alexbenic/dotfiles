@@ -6,6 +6,7 @@ Plug 'ryanoasis/vim-devicons'
 Plug 'vim-airline/vim-airline'
 Plug 'Yggdroot/indentLine'
 Plug 'romainl/Apprentice', { 'branch': 'fancylines-and-neovim' }
+Plug 'sjl/badwolf'
 "general#qol
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
@@ -18,6 +19,8 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-projectionist'
+Plug 'tpope/vim-ragtag'
 Plug 'wellle/targets.vim'
 Plug 'airblade/vim-gitgutter'
 Plug 'justinmk/vim-sneak'
@@ -36,27 +39,30 @@ Plug 'SirVer/ultisnips'
 Plug 'junegunn/fzf',              { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 "util#completion
-Plug 'autozimu/LanguageClient-neovim', { 'tag': 'binary-*-x86_64-unknown-linux-musl' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
 " IDE-like autocompletion without
-Plug 'roxma/nvim-completion-manager'
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 
 "lang
 Plug 'sheerun/vim-polyglot'
+"lang#vue
+Plug 'posva/vim-vue'
 "lang#elixir
 Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 "lang#go
 Plug 'fatih/vim-go',            { 'for' : 'go' }
-"lang#moonscript
-Plug 'leafo/moonscript-vim'
-"lang#scheme
-Plug 'kovisoft/slimv'
+"lang#typescript
+Plug 'HerringtonDarkholme/yats.vim'
+" Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
+Plug '~/Projects/nvim-typescript', { 'do': './install.sh' }
 
 "other#writing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
 "other#editorconfig
 Plug 'editorconfig/editorconfig-vim'
-"other#tasks
-Plug 'blindFS/vim-taskwarrior'
 
 call plug#end()

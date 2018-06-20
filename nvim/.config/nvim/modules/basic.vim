@@ -46,6 +46,9 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 cmap w!! %!sudo tee > /dev/null %
 
+"Remove all trailing whitespace by pressing F5
+nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><Paste>
+
 " %% expands to current dir in command mode
 cnoremap %% <C-R>=expand('%:p:h').'/'<CR>
 
@@ -250,6 +253,9 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "H = ^ -- L = $
 noremap H ^
 noremap L $
+
+"Remove unwanted spaces
+nnoremap <F5> :%s/\s\+$//e<CR>
 
 " Paste/Copy using system clipboard
 map <Leader>p "+gP
