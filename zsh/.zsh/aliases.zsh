@@ -13,6 +13,7 @@
 alias up="cd ../"
 alias y="yaourt"
 alias vim="nvim"
+alias vimt="nvim +terminal"
 alias mplayer="mplayer -af scaletempo"
 alias info="info --vi-keys"
 alias o="xdg-open"
@@ -30,21 +31,6 @@ alias -g T="| tail"
 alias -g V="| vim -R -"
 alias -g U=' --help | head'
 alias -g W="| wc"
-
-#█▓▒░github
-alias git="hub"
-alias g="hub"
-alias ga="git add"
-alias gu="git reset HEAD --"
-alias gc="git commit -m"
-alias gs="git status -sb"
-alias gd="git diff"
-alias gf="git fetch"
-alias gm="git merge"
-alias gr="git rebase"
-alias gp="git push"
-alias gpr="hub pull-request"
-alias gn="git log --graph --decorate --pretty=oneline --abbrev-commit --all"
 
 #█▓▒░util
 alias exptmp="sudo mount -o remount,size=3G,noatime /tmp"
