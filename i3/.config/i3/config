@@ -2,8 +2,8 @@
 set $mod Mod4
 set $term termite
 # set $term alacritty
-set $lockscreen betterlockscreen -l blur
-set $menu rofi -show run & swaymsg [title="rofi"] focus
+set $lockscreen sxlock
+set $menu rofi -show run
 
 # General Settings
 font pango:System San Francisco Display 10
@@ -95,7 +95,7 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 # Program workspace
-assign [class="^Termite$"] 1
+# assign [class="^Termite$"] 1
 assign [class="^Firefox$"] 3
 
 # Widow Colors
@@ -122,3 +122,4 @@ exec_always feh --bg-scale ~/.wallpapers/explorer.jpg
 exec --no-startup-id dunst
 exec --no-startup-id firefox
 exec --no-startup-id termite
+exec --no-startup-id xrandr --auto --output LVDS-1 --auto --left-of VGA-1
