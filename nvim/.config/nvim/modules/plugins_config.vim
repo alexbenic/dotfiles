@@ -5,6 +5,7 @@
 "    -> fzf
 "    -> projections
 "    -> neoformat
+"    -> vim-test
 "    -> deoplete
 "    -> nvim-typescript
 "    -> vim-airline
@@ -58,6 +59,7 @@ let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
 nnoremap <Leader>? :ALEDetail<CR>
+nnoremap <C-]>     :ALEGoToDefinition<CR>
 
 """"""""""""""""""""""""""""""
 " => fzf
@@ -65,11 +67,26 @@ nnoremap <Leader>? :ALEDetail<CR>
 set rtp+=~/.fzf
 let g:fzf_tags_command = 'ctags -R'
 "make fzf respect .gitignore - https://github.com/junegunn/fzf.vim/issues/121
-" let $FZF_DEFAULT_COMMAND = 'ag -g ""'
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 let g:fzf_action = {
   \ 'ctrl-t': 'tab split',
   \ 'ctrl-x': 'split',
   \ 'ctrl-v': 'vsplit' }
+
+" fzfmru
+command! FZFMru call fzf#run({
+\ 'source':  reverse(s:all_files()),
+\ 'sink':    'edit',
+\ 'options': '-m -x +s',
+\ 'down':    '40%' })
+
+function! s:all_files()
+  return extend(
+  \ filter(copy(v:oldfiles),
+  \        "v:val !~ 'fugitive:\\|term:\\|NERD_tree\\|^/tmp/\\|.git/'"),
+  \ map(filter(range(1, bufnr('$')), 'buflisted(v:val)'), 'bufname(v:val)'))
+endfunction
+
 " keybindings
 nnoremap <silent> <C-p>                 :Files<CR>
 nnoremap <silent> <Leader><Enter>       :Buffers<CR>
@@ -80,6 +97,7 @@ nnoremap <silent> <Leader>ta            :Tags<CR>
 nnoremap <silent> <Leader>l             :Lines<CR>
 nnoremap <silent> <Leader>bc            :BCommits<CR>
 nnoremap <silent> <Leader>gs            :GFiles?<CR>
+nnoremap <silent> <Leader>mr            :FZFMru<CR>
 
 """"""""""""""""""""""""""""""
 " => projections
@@ -150,6 +168,22 @@ let g:neoformat_enabled_json = ['prettier']
 let g:neoformat_enabled_rust = ['rustfmt']
 
 """"""""""""""""""""""""""""""
+" => vim-test
+""""""""""""""""""""""""""""""
+let test#strategy = "neoterm"
+" vertical split instead of the default horizontal
+let g:neoterm_default_mod = "vertical"
+" pretty much essential: by default in terminal mode, you have to press ctrl-\-n to get into normal mode
+" ain't nobody got time for that
+" tnoremap <Esc> <C-\><C-n>
+
+nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
+nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
+nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
+nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
+nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
+
+""""""""""""""""""""""""""""""
 " => deoplete
 """"""""""""""""""""""""""""""
 let g:deoplete#enable_at_startup = 1
@@ -157,8 +191,8 @@ let g:deoplete#enable_at_startup = 1
 """"""""""""""""""""""""""""""
 " => nvim-typescript
 """"""""""""""""""""""""""""""
-let g:nvim_typescript#type_info_on_hold = 1
-let g:nvim_typescript#default_mappings = 1
+" let g:nvim_typescript#type_info_on_hold = 1
+" let g:nvim_typescript#default_mappings = 1
 
 """"""""""""""""""""""""""""""
 " => vim-airline

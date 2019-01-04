@@ -28,6 +28,8 @@ Plug 'justinmk/vim-dirvish'
 Plug 'AndrewRadev/splitjoin.vim'
 Plug 'majutsushi/tagbar'
 Plug 'sbdchd/neoformat'
+Plug 'kassio/neoterm'
+
 "util#make
 Plug 'w0rp/ale'
 "util#test
@@ -56,8 +58,9 @@ Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
 Plug 'fatih/vim-go',            { 'for' : 'go' }
 "lang#typescript
 Plug 'HerringtonDarkholme/yats.vim'
+Plug 'suy/vim-context-commentstring'
 " Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
-Plug '~/Projects/nvim-typescript', { 'do': './install.sh' }
+" Plug '~/Projects/nvim-typescript', { 'do': './install.sh' }
 
 "other#writing
 Plug 'junegunn/goyo.vim'
