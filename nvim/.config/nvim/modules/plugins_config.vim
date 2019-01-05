@@ -26,7 +26,7 @@
 " => language-client
 """"""""""""""""""""""""""""""
 let g:LanguageClient_serverCommands = {
-    \ 'rust': ['rustup', 'run', 'nightly', 'rls'],
+    \ 'rust': ['rls'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
     \ }
@@ -36,19 +36,26 @@ let g:LanguageClient_serverCommands = {
 """"""""""""""""""""""""""""""
 let g:ale_linters = {
       \'javascript' : ['eslint', 'flow'],
-      \'typescript' : ['tsserver', 'typecheck', 'tslint', 'prettier'],
+      \'typescript' : ['typecheck', 'tslint', 'tsserver', 'prettier'],
       \'elm' : ['make'],
       \'nim' : ['nim check'],
       \'coffescript': ['coffelint'],
+      \'reason' : ['marlin', 'ols'],
   \}
 
 let g:ale_fixers = {
       \'javascript' : ['prettier', 'eslint'],
+      \'json' : ['prettier'],
+      \'scss' : ['prettier'],
       \'jsx' : ['prettier', 'eslint'],
       \'typescript' : ['prettier', 'tslint'],
+      \'solidity' : ['solium'],
+      \'rust' : ['rustfmt'],
+      \'reason' : ['refmt'],
   \}
 
-nnoremap <silent><Leader>ff :ALEFix<CR>
+" autocomplete
+let g:ale_completion_enabled = 1                             
 " show errors in quicklist
 let g:ale_set_loclist = 0
 let g:ale_set_quickfix = 1
@@ -59,7 +66,8 @@ let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
 
 nnoremap <Leader>? :ALEDetail<CR>
-nnoremap <C-]>     :ALEGoToDefinition<CR>
+nnoremap <C-]> :ALEGoToDefinition<CR>
+nnoremap <silent><Leader>ff :ALEFix<CR>
 
 """"""""""""""""""""""""""""""
 " => fzf
@@ -89,8 +97,9 @@ endfunction
 
 " keybindings
 nnoremap <silent> <C-p>                 :Files<CR>
+nnoremap <silent> <Leader>p             :Files <C-R>=expand('%:h')<CR><CR>
 nnoremap <silent> <Leader><Enter>       :Buffers<CR>
-nnoremap <silent> <Leader>a             :Ag<CR>
+nnoremap <silent> <Leader>f             :Ag<CR>
 nnoremap <silent> <Leader>ag            :Ag <C-R><C-W><CR>
 nnoremap <silent> <Leader><Leader>      :BLines<CR>
 nnoremap <silent> <Leader>ta            :Tags<CR>
@@ -120,6 +129,8 @@ let g:projectionist_heuristics = {
       \ }
 
 nnoremap <leader>aa :A<CR>
+nnoremap <leader>dc :Pcd<CR>
+nnoremap <leader>rd :Pcd
 
 """"""""""""""""""""""""""""""
 " => neoformat
@@ -294,6 +305,12 @@ nnoremap <Leader>gp :Ggrep
 nnoremap <Leader>gR :Gread<CR>
 nnoremap <Leader>g :Git
 nnoremap <Leader>gd :Gdiff<CR>
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => elm-vim
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+inoremap <M-o>       <Esc>o
+let g:ragtag_global_maps = 1
 
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
