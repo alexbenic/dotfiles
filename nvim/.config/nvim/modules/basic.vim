@@ -5,6 +5,7 @@
 "
 " Version:
 "       1.0 - 2018-01-03 17:20
+"       1.1 - 2019-01-08 13:16
 "
 " Sections:
 "    -> General
@@ -135,17 +136,8 @@ set novisualbell
 set t_vb=
 set tm=500
 
-" Properly disable sound on errors on MacVim
-if has("gui_macvim")
-  autocmd GUIEnter * set vb t_vb=
-endif
-
 " Smarter line joins
 set formatoptions+=j
-
-" Add a bit extra margin to the left
-set foldcolumn=1
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Colors and Fonts
@@ -244,7 +236,7 @@ map <leader>h :bprevious<cr>
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
-" Return to last edit position when opening files (You want this!)
+" Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -261,7 +253,7 @@ nnoremap <F5> :%s/\s\+$//e<CR>
 map <Leader>p "+gP
 map <Leader>y "+y
 
-"annoying
+" annoying
 map q: :q
 nnoremap Q <nop>
 
@@ -278,7 +270,7 @@ fun! CleanExtraSpaces()
 endfun
 
 if has("autocmd")
-  autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
+  autocmd BufWritePre *.txt,*.js,*ts,*.py,*.wiki,*.sh,*.coffee :call CleanExtraSpaces()
 endif
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -295,14 +287,6 @@ nnoremap <Leader>es :so $MYVIMRC<CR>
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Helper functions
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" Returns true if paste mode is enabled
-function! HasPaste()
-  if &paste
-    return 'PASTE MODE  '
-  endif
-  return ''
-endfunction
-
 " Don't close window, when deleting a buffer
 command! Bclose call <SID>BufcloseCloseIt()
 function! <SID>BufcloseCloseIt()

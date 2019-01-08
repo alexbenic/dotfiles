@@ -36,7 +36,7 @@ let g:LanguageClient_serverCommands = {
 """"""""""""""""""""""""""""""
 let g:ale_linters = {
       \'javascript' : ['eslint', 'flow'],
-      \'typescript' : ['typecheck', 'tslint', 'tsserver', 'prettier'],
+      \'typescript' : ['tslint', 'tsserver', 'prettier'],
       \'elm' : ['make'],
       \'nim' : ['nim check'],
       \'coffescript': ['coffelint'],
@@ -64,6 +64,8 @@ let g:ale_statusline_format = ['⨉ %d', '⚠ %d', '⬥ ok']
 " ale signs
 let g:ale_sign_error = '>>'
 let g:ale_sign_warning = '--'
+" virtual buffer
+let g:ale_virtualtext_cursor = 1
 
 nnoremap <Leader>? :ALEDetail<CR>
 nnoremap <C-]> :ALEGoToDefinition<CR>
