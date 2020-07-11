@@ -95,7 +95,8 @@ endif
 set modeline
 
 " list chars
-set listchars=tab:▸\ ,trail:·,extends:❯,precedes:❮,nbsp:×
+set list
+set listchars=tab:▸.,trail:·,extends:❯,precedes:❮,nbsp:×
 
 " A buffer becomes hidden when it is abandoned
 set hidden

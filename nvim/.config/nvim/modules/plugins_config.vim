@@ -29,6 +29,8 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['rls'],
     \ 'javascript': ['javascript-typescript-stdio'],
     \ 'javascript.jsx': ['javascript-typescript-stdio'],
+    \ 'typescript': ['javascript-typescript-stdio'],
+    \ 'typescript.jsx': ['javascript-typescript-stdio'],
     \ }
 
 """"""""""""""""""""""""""""""
@@ -199,7 +201,17 @@ nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
 """"""""""""""""""""""""""""""
 " => deoplete
 """"""""""""""""""""""""""""""
-let g:deoplete#enable_at_startup = 1
+" let g:deoplete#enable_at_startup = 1
+
+""""""""""""""""""""""""""""""
+" => mucomplete
+""""""""""""""""""""""""""""""
+set completeopt+=menuone
+set completeopt+=noselect
+" set shortmess+=c
+let g:mucomplete#can_complete = {}
+let g:mucomplete#enable_at_startup = 1
+let g:mucomplete#chains = {'default': ['omni']}
 
 """"""""""""""""""""""""""""""
 " => nvim-typescript

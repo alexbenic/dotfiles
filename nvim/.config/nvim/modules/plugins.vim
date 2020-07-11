@@ -44,7 +44,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'do': 'bash install.sh',
     \ }
 " IDE-like autocompletion without
-Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" Plug 'lifepillar/vim-mucomplete'
 
 "lang
 Plug 'sheerun/vim-polyglot'

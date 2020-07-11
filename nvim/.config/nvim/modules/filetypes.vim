@@ -17,6 +17,25 @@ autocmd FileType javascript nnoremap <buffer>
   \ <leader>lf :call LanguageClient_textDocument_documentSymbol()<cr>
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" => Typescript
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+autocmd FileType typescript setlocal omnifunc=LanguageClient#complete
+autocmd FileType typescript.jsx setlocal omnifunc=LanguageClient#complete
+" <leader>ld to go to definition
+autocmd FileType typescript nnoremap <buffer>
+  \ <leader>ld :call LanguageClient_textDocument_definition()<cr>
+" <leader>lh for type info under cursor
+autocmd FileType typescript nnoremap <buffer>
+  \ <leader>lh :call LanguageClient_textDocument_hover()<cr>
+" <leader>lr to rename variable under cursor
+autocmd FileType typescript nnoremap <buffer>
+  \ <leader>lr :call LanguageClient_textDocument_rename()<cr>
+" <leader>lf to fuzzy find the symbols in the current document
+autocmd FileType typescript nnoremap <buffer>
+  \ <leader>lf :call LanguageClient_textDocument_documentSymbol()<cr>
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Go
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 autocmd BufNewFile,BufRead *.go setlocal noexpandtab tabstop=4 shiftwidth=4
