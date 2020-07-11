@@ -112,8 +112,13 @@ weather()
 
   printf "\uf0c2 %.0f°c" $data
 }
+corona()
+{
+  data=$(curl -v --silent https://corona-stats.online/rs 2>&1 | grep -i serbia | awk '{print $6}')
+  printf "✚ %d" $data
+}
 
 CPU_INFO=`cpu`
 RAM_INFO=`ram`
 
-echo `front` `weather` `clock`
+echo `front` `corona` `weather` `clock`
