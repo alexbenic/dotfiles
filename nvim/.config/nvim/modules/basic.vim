@@ -47,14 +47,14 @@ nmap <leader>w :w!<cr>
 " (useful for handling the permission-denied error)
 cmap w!! %!sudo tee > /dev/null %
 
-"Remove all trailing whitespace by pressing F5
-nnoremap <F5> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><Paste>
-
 " %% expands to current dir in command mode
 cnoremap %% <C-R>=expand('%:p:h').'/'<CR>
 
 " opens command mode to current dir
 map <Leader>e :e %%
+
+" live substitution
+map inccommand=nosplit
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => VIM user interface
@@ -147,29 +147,14 @@ set formatoptions+=j
 syntax on
 syntax enable
 
-" Enable 256 colors palette in Gnome Terminal
-if $COLORTERM == 'gnome-terminal'
-  set t_Co=256
-endif
-
+" Pretty colors
 colorscheme despacio
-
-" set background=dark
-
-" Set extra options when running in GUI mode
-if has("gui_running")
-  set guioptions-=T
-  set guioptions-=e
-  set t_Co=256
-  set guitablabel=%M\ %t
-endif
 
 " Set utf8 as standard encoding and en_US as the standard language
 set encoding=utf8
 
 " Use Unix as the standard file type
 set ffs=unix,dos,mac
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Files, backups and undo
@@ -178,7 +163,6 @@ set ffs=unix,dos,mac
 set nobackup
 set nowb
 set noswapfile
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Text, tab and indent related
@@ -202,6 +186,45 @@ set ai "Auto indent
 set si "Smart indent
 set wrap "Wrap lines
 
+" Enables per project settings via .exrc or .vimrc
+" Keep in mind that this comes with risks if any of
+" the above mentioned files is commited in repo
+set exrc
+set secure
+
+""""""""""""""""""""""""""""""
+" Navigation
+""""""""""""""""""""""""""""""
+nnoremap <leader>a :argadd <c-r>=fnameescape(expand('%:p:h'))<cr>/*<C-d>
+nnoremap <leader>b :b <C-d>
+nnoremap <leader>e :e<space>
+nnoremap <leader>v :vert sf<space>
+nnoremap <leader>ed :e <c-r>=expand('%:p:h')<cr>/
+nnoremap <leader>g :Grep<space>
+nnoremap <leader>i :Ilist<space>
+nnoremap <leader>j :tjump /
+nnoremap <leader>m :make<cr>
+nnoremap <leader>q :b#<cr>
+nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
+nnoremap <leader>g :Grep<space>
+nnoremap <leader>f :find<space>
+
+if executable("ag")
+    set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+endif
+
+function! Grep(...)
+    return system(join([&grepprg] + [expandcmd(join(a:000, ' '))], ' '))
+endfunction
+command! -nargs=+ -complete=file_in_path -bar Grep  cgetexpr Grep(<f-args>)
+command! -nargs=+ -complete=file_in_path -bar LGrep lgetexpr Grep(<f-args>)
+augroup quickfix
+    autocmd!
+    autocmd QuickFixCmdPost cgetexpr cwindow
+    autocmd QuickFixCmdPost lgetexpr lwindow
+augroup END
+cnoreabbrev <expr> grep (getcmdtype() ==# ':' && getcmdline() ==# 'grep') ? 'Grep' : 'grep'
 
 """"""""""""""""""""""""""""""
 " => Visual mode related
@@ -210,7 +233,6 @@ set wrap "Wrap lines
 " Super useful! From an idea by Michael Naumann
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " => Moving around, tabs, windows and buffers
@@ -246,9 +268,6 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 "H = ^ -- L = $
 noremap H ^
 noremap L $
-
-"Remove unwanted spaces
-nnoremap <F5> :%s/\s\+$//e<CR>
 
 " Paste/Copy using system clipboard
 map <Leader>p "+gP

@@ -1,17 +1,23 @@
 "laod plugins from plugin list
 call plug#begin('~/.config/nvim/plugged')
 
-"general#eyecandy
-Plug 'ryanoasis/vim-devicons'
-Plug 'vim-airline/vim-airline'
-Plug 'Yggdroot/indentLine'
-Plug 'romainl/Apprentice', { 'branch': 'fancylines-and-neovim' }
-Plug 'sjl/badwolf'
 "general#qol
 Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'christoomey/vim-tmux-navigator'
-" Plug 'cohama/lexima.vim' "this or auto-pairs
+Plug 'romainl/vim-qlist'
+Plug 'romainl/vim-qf'
+Plug 'ludovicchabant/vim-gutentags'
+
+"general#editing
+Plug 'terryma/vim-expand-region'
+Plug 'suy/vim-context-commentstring'
+
+"general#lang
+Plug 'elixir-editors/vim-elixir'
+Plug 'rescript-lang/vim-rescript', {'tag': 'v1.2.0'}
+Plug 'purescript-contrib/purescript-vim'
+Plug 'frigoeu/psc-ide-vim'
 
 "util#general
 Plug 'tpope/vim-repeat'
@@ -21,51 +27,25 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-projectionist'
 Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-rsi'
+Plug 'tpope/vim-eunuch'
 Plug 'wellle/targets.vim'
-Plug 'airblade/vim-gitgutter'
 Plug 'justinmk/vim-sneak'
 Plug 'justinmk/vim-dirvish'
-Plug 'AndrewRadev/splitjoin.vim'
-Plug 'majutsushi/tagbar'
-Plug 'sbdchd/neoformat'
+Plug 'airblade/vim-gitgutter'
+
 "util#make
 Plug 'w0rp/ale'
-"util#test
-Plug 'janko-m/vim-test'
-"util#snippets
-Plug 'SirVer/ultisnips'
-      \ | Plug 'honza/vim-snippets'
-"util#ctrl-p
-Plug 'junegunn/fzf',              { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
-"util#completion
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
-" IDE-like autocompletion without
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'lifepillar/vim-mucomplete'
 
-"lang
-Plug 'sheerun/vim-polyglot'
-"lang#vue
-Plug 'posva/vim-vue'
-"lang#elixir
-Plug 'slashmili/alchemist.vim', { 'for': 'elixir' }
-"lang#go
-Plug 'fatih/vim-go',            { 'for' : 'go' }
-"lang#typescript
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'suy/vim-context-commentstring'
-"lang#reasonml
-Plug 'reasonml-editor/vim-reason-plus'
-" Plug 'mhartington/nvim-typescript', { 'do': './install.sh' }
-" Plug '~/Projects/nvim-typescript', { 'do': './install.sh' }
+"other#experimental
+Plug 'nvim-treesitter/nvim-treesitter', { 'commit': '3c07232'}
+Plug '~/projects/nvim-lspconfig'
 
 "other#writing
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
+
 "other#editorconfig
 Plug 'editorconfig/editorconfig-vim'
 
