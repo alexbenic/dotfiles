@@ -201,13 +201,16 @@ nnoremap <leader>e :e<space>
 nnoremap <leader>v :vert sf<space>
 nnoremap <leader>ed :e <c-r>=expand('%:p:h')<cr>/
 nnoremap <leader>g :Grep<space>
-nnoremap <leader>i :Ilist<space>
 nnoremap <leader>j :tjump /
 nnoremap <leader>m :make<cr>
-nnoremap <leader>q :b#<cr>
+nnoremap <leader>` :b#<cr>
 nnoremap <leader>t :TTags<space>*<space>*<space>.<cr>
 nnoremap <leader>g :Grep<space>
 nnoremap <leader>f :find<space>
+nnoremap <leader>i :Ilist<space>
+nnoremap <leader>d :Dlist /<cr>
+nnoremap <leader>k :Keep<space>
+nnoremap <leader>r :Reject<space>
 
 if executable("ag")
     set grepprg=ag\ --nogroup\ --nocolor\ --ignore-case\ --column
@@ -241,9 +244,6 @@ vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
 vnoremap J :m '>+1<CR>gv=gv
 vnoremap K :m '<-2<CR>gv=gv
 
-"Close quickfix
-nnoremap <Leader>d :cclose<CR>
-
 "close window
 nnoremap <Leader>qt ZZ<CR>
 
@@ -252,9 +252,6 @@ map <leader>bd :Bclose<cr>
 
 " Close all the buffers
 map <leader>ba :bufdo bd<cr>
-
-map <leader>l :bnext<cr>
-map <leader>h :bprevious<cr>
 
 " Switch CWD to the directory of the open buffer
 map <leader>cd :cd %:p:h<cr>:pwd<cr>

@@ -6,18 +6,16 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'junegunn/vim-easy-align'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'romainl/vim-qlist'
-Plug 'romainl/vim-qf'
-Plug 'ludovicchabant/vim-gutentags'
+Plug 'romainl/vim-qf', {'commit': '7f9bc496'}
+Plug 'Valloric/ListToggle'
 
 "general#editing
 Plug 'terryma/vim-expand-region'
 Plug 'suy/vim-context-commentstring'
 
 "general#lang
-Plug 'elixir-editors/vim-elixir'
-Plug 'rescript-lang/vim-rescript', {'tag': 'v1.2.0'}
-Plug 'purescript-contrib/purescript-vim'
-Plug 'frigoeu/psc-ide-vim'
+Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
+Plug 'rescript-lang/vim-rescript', {'tag': 'v1.2.0', 'for': 'rescript'}
 
 "util#general
 Plug 'tpope/vim-repeat'
