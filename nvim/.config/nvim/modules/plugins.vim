@@ -14,7 +14,8 @@ Plug 'terryma/vim-expand-region'
 Plug 'suy/vim-context-commentstring'
 
 "general#lang
-Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
+" Plug 'elixir-editors/vim-elixir', {'for': 'elixir'}
+Plug 'elixir-tools/elixir-tools.nvim', {'for': 'elixir', 'branch': 'main'}
 Plug 'rescript-lang/vim-rescript', {'tag': 'v1.2.0', 'for': 'rescript'}
 
 "util#general
@@ -32,6 +33,7 @@ Plug 'wellle/targets.vim'
 Plug 'justinmk/vim-sneak'
 Plug 'justinmk/vim-dirvish'
 Plug 'airblade/vim-gitgutter'
+Plug 'nvim-lua/plenary.nvim'
 
 "util#make
 Plug 'w0rp/ale'

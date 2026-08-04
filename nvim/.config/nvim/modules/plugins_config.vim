@@ -14,11 +14,21 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 """"""""""""""""""""""""""""""
+" => elixir-tools.nvim
+""""""""""""""""""""""""""""""
+" lua <<EOF
+" require("elixir").setup({
+"   nextls = {enable = false},
+"   credo = {enable = true},
+"   elixirls = {enable = true},
+" })
+" EOF
+
+""""""""""""""""""""""""""""""
 " => language-server
 """"""""""""""""""""""""""""""
 lua << EOF
 require'lspconfig'.tsserver.setup{}
-require'lspconfig'.elixirls.setup{}
 require'lspconfig'.rescriptls.setup{}
 EOF
 nnoremap <silent> gd    <cmd>lua vim.lsp.buf.declaration()<CR>
@@ -65,7 +75,7 @@ let g:ale_fixers = {
   \}
 
 " elixir
-let g:ale_elixir_elixir_ls_release = expand("~/.cache/nvim/lspconfig/elixirls/elixir-ls/release/")
+" let g:ale_elixir_elixir_ls_release = expand("~/.cache/nvim/lspconfig/elixirls/elixir-ls/release/")
 " autocomplete
 let g:ale_completion_enabled = 0
 " show errors in quicklist

@@ -1,0 +1,5 @@
+vim.keymap.set("n", "<leader>k", ":Keep<space>", { silent = false, buffer = true })
+vim.keymap.set("n", "K", ":Keep <C-R><C-W><CR>", { buffer = true })
+vim.keymap.set("n", "<leader>r", ":Reject<space>", { silent = false, buffer = true })
+vim.keymap.set("n", "R", ":Reject <C-R><C-W><CR>", { buffer = true })
+vim.keymap.set("n", "rr", ":Restore<CR>", { buffer = true })

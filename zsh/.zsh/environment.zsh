@@ -11,14 +11,13 @@
 #HIST_STAMPS=mm/dd/yyyy
 
 #█▓▒░ paths
-export GOPATH=$HOME/Cloud/Projects/go
 export MANPATH=/usr/local/man:$MANPATH
 export PATH=$HOME/.cargo/bin/:$GOPATH/bin:/usr/local/bin:$PATH
 
 #█▓▒░ preferred editor for local and remote sessions
 export EDITOR=nvim
 export VISUAL=nvim
-export BROWSER=chromium
+export BROWSER=firefox
 
 #█▓▒░ enchancd
 export ENHANCD_FILTER="fzf"
@@ -35,7 +34,3 @@ export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
 export LANGUAGE=en_US.UTF-8
 export LESSCHARSET=utf-8
-
-#█▓▒░ venv
-#export WORKON_HOME=$HOME/.virtualenvs
-#source /usr/bin/virtualenvwrapper.sh
