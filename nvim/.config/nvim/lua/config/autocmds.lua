@@ -1,4 +1,7 @@
+local group = vim.api.nvim_create_augroup("user_config", { clear = true })
+
 vim.api.nvim_create_autocmd("BufReadPost", {
+  group = group,
   pattern = "*",
   callback = function()
     local ft = vim.opt_local.filetype:get()
@@ -19,16 +22,20 @@ vim.api.nvim_create_autocmd("BufReadPost", {
   end,
 })
 
-vim.api.nvim_create_autocmd("BufWritePost", {
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufWritePost" }, {
+  group = group,
   callback = function()
-    return require("lint").try_lint()
+    local lint = require("lint")
+    lint.try_lint()
+    lint.try_lint("codespell")
   end,
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
+  group = group,
   callback = function(ev)
     local client = vim.lsp.get_client_by_id(ev.data.client_id)
-    if client:supports_method('textDocument/completion') then
+    if client and client:supports_method('textDocument/completion') then
       vim.lsp.completion.enable(true, client.id, ev.buf, { autotrigger = false })
     end
   end,

@@ -1,14 +1,34 @@
-local function map(mode, binding, fn, desc)
-  return vim.keymap.set(mode, binding, fn, { desc = desc })
-end
-
 return {
   {
     "nvim-telescope/telescope.nvim",
-    branch = "0.1.x",
-    dependencies = { "nvim-lua/plenary.nvim" },
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+    },
+    cmd = "Telescope",
+    keys = {
+      { "<leader><space>", "<cmd>Telescope buffers<CR>", desc = "Search existing Buffers" },
+      { "<leader>sG", "<cmd>Telescope git_files<CR>", desc = "[S]earch [G]it files" },
+      { "<leader>sf", "<cmd>Telescope find_files<CR>", desc = "[S]earch [F]iles" },
+      { "<leader>sw", "<cmd>Telescope grep_string<CR>", desc = "[S]earch current [W]ord" },
+      { "<leader>sg", "<cmd>Telescope live_grep<CR>", desc = "[S]earch by [G]rep" },
+      { "<leader>sd", "<cmd>Telescope diagnostics<CR>", desc = "[S]earch [D]iagnostics" },
+      { "<leader>sr", "<cmd>Telescope lsp_references<CR>", desc = "[S]earch LSP [R]eferences" },
+      {
+        "<leader>/",
+        function()
+          require("telescope.builtin").current_buffer_fuzzy_find(
+            require("telescope.themes").get_dropdown({ previewer = false })
+          )
+        end,
+        desc = "[/] Fuzzy search in current buffer",
+      },
+    },
     config = function()
       require("telescope").setup({
+        defaults = {
+          file_ignore_patterns = { "node_modules/", "%.git/" },
+        },
         extensions = {
           fzf = {
             fuzzy = true,
@@ -21,28 +41,5 @@ return {
 
       require("telescope").load_extension("fzf")
     end,
-    opts = {
-      defaults = {
-        file_ignore_patterns = { "node_modules", ".git" },
-      },
-    },
-    init = function()
-      local builtin = require("telescope.builtin")
-      local themes = require("telescope.themes")
-
-      map("n", "<leader><space>", builtin.buffers, "Search existing Buffers")
-      map("n", "<leader>gf", builtin.git_files, "Search [G]it [F]iles")
-      map("n", "<leader>sf", builtin.find_files, "[S]earch [F]iles")
-      map("n", "<leader>sw", builtin.grep_string, "[S]earch current [W]ord")
-      map("n", "<leader>sg", builtin.live_grep, "[S]earch by [G]rep")
-      map("n", "<leader>sd", builtin.diagnostics, "[S]earch [D]iagnostics")
-      map("n", "<leader>lr", builtin.lsp_references, "[L]sp [R]erefences")
-      map("n", "<leader>/", function()
-        builtin.current_buffer_fuzzy_find(themes.get_dropdown({
-          previewer = false,
-        }))
-      end, "[/] Fuzzilty search in current buffer")
-    end,
   },
-  { "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 }

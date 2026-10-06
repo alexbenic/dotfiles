@@ -8,21 +8,19 @@
 --       1.1 - 2019-01-08 13:16
 --       1.2 - 2022-06-10 20:20
 --       1.3 - 2025-01-09 20:45
+--       1.4 - 2026-10-06 14:25
 --
--- Sections:
---    -> Colors and Fonts
---    -> Files and backups
---    -> Text, tab and indent related
---    -> Visual mode related
---    -> Moving around, tabs and buffers
---    -> Editing mappings
---    -> Misc
---    -> Helper functions
---    -> Plugins
+-- Layout:
+--    lua/config/     -> options, mappings, autocmds, lazy bootstrap
+--    lua/plugins/    -> lazy.nvim plugin specs
+--    plugin/         -> standalone features (:Grep, gq via conform)
+--    after/lsp/      -> per-server LSP overrides
+--    after/ftplugin/ -> filetype-local settings
 --
 ---------------------------------------------------------------
+vim.g.mapleader = " "
+
 require("config.options")
 require("config.mappings")
 require("config.lazy")
 require("config.autocmds")
-require("config.grep")

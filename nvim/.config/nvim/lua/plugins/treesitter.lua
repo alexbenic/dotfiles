@@ -1,93 +1,89 @@
 local languages = {
+  "bash",
   "c",
   "cpp",
+  "css",
+  "diff",
+  "dockerfile",
+  "eex",
+  "elixir",
+  "gitcommit",
   "go",
+  "heex",
+  "html",
+  "javascript",
+  "json",
   "lua",
   "python",
   "rust",
+  "toml",
   "tsx",
-  "css",
-  "dockerfile",
   "typescript",
-  "elixir",
+  "yaml",
 }
 
 return {
   {
     "nvim-treesitter/nvim-treesitter",
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects",
-    },
+    branch = "main",
+    lazy = false,
     build = ":TSUpdate",
     config = function()
-      require("nvim-treesitter.configs").setup({
-        auto_install = true,
-        ensure_installed = languages,
-        highlight = { enable = true },
-        indent = { enable = true },
-        incremental_selection = {
-          enable = true,
-          keymaps = {
-            init_selection = "<C-,>",
-            node_incremental = "<C-,>",
-            scope_incremental = "<C-s>",
-            node_decremental = "<C-c>",
-          },
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-            keymaps = {
-              -- You can use the capture groups defined in textobjects.scm
-              ["aa"] = "@parameter.outer",
-              ["ia"] = "@parameter.inner",
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = "@class.inner",
-            },
-          },
-          move = {
-            enable = true,
-            set_jumps = true, -- whether to set jumps in the jumplist
-            goto_next_start = {
-              ["]m"] = "@function.outer",
-              ["]]"] = "@class.outer",
-            },
-            goto_next_end = {
-              ["]M"] = "@function.outer",
-              ["]["] = "@class.outer",
-            },
-            goto_previous_start = {
-              ["[m"] = "@function.outer",
-              ["[["] = "@class.outer",
-            },
-            goto_previous_end = {
-              ["[M"] = "@function.outer",
-              ["[]"] = "@class.outer",
-            },
-          },
-          swap = {
-            enable = true,
-            swap_next = {
-              ["<leader>a"] = "@parameter.inner",
-            },
-            swap_previous = {
-              ["<leader>A"] = "@parameter.inner",
-            },
-          },
-        },
+      require("nvim-treesitter").install(languages)
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("treesitter_start", { clear = true }),
+        callback = function(ev)
+          if pcall(vim.treesitter.start, ev.buf) then
+            vim.bo[ev.buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            vim.wo[0][0].foldmethod = "expr"
+            vim.wo[0][0].foldexpr = "v:lua.vim.treesitter.foldexpr()"
+          end
+        end,
       })
     end,
   },
   {
-    'Wansmer/treesj',
-    dependencies = { 'nvim-treesitter/nvim-treesitter' },
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
     config = function()
-      require('treesj').setup({
-          use_default_keymaps = false,
+      require("nvim-treesitter-textobjects").setup({
+        select = { lookahead = true },
+        move = { set_jumps = true },
       })
+      local select = require("nvim-treesitter-textobjects.select")
+      local move = require("nvim-treesitter-textobjects.move")
+      local swap = require("nvim-treesitter-textobjects.swap")
+      for lhs, spec in pairs({
+        af = { "@function.outer", "Outer function" },
+        ["if"] = { "@function.inner", "Inner function" },
+        ac = { "@class.outer", "Outer class" },
+        ic = { "@class.inner", "Inner class" },
+      }) do
+        vim.keymap.set({ "x", "o" }, lhs, function()
+          select.select_textobject(spec[1], "textobjects")
+        end, { desc = spec[2] })
+      end
+      vim.keymap.set({ "n", "x", "o" }, "]m", function() move.goto_next_start("@function.outer", "textobjects") end,
+        { desc = "Next function start" })
+      vim.keymap.set({ "n", "x", "o" }, "]M", function() move.goto_next_end("@function.outer", "textobjects") end,
+        { desc = "Next function end" })
+      vim.keymap.set({ "n", "x", "o" }, "[m", function() move.goto_previous_start("@function.outer", "textobjects") end,
+        { desc = "Previous function start" })
+      vim.keymap.set({ "n", "x", "o" }, "[M", function() move.goto_previous_end("@function.outer", "textobjects") end,
+        { desc = "Previous function end" })
+      vim.keymap.set("n", "<leader>a", function() swap.swap_next("@parameter.inner") end,
+        { desc = "Swap parameter with next" })
+      vim.keymap.set("n", "<leader>A", function() swap.swap_previous("@parameter.inner") end,
+        { desc = "Swap parameter with previous" })
     end,
-  }
+  },
+  {
+    "Wansmer/treesj",
+    dependencies = { "nvim-treesitter/nvim-treesitter" },
+    keys = {
+      { "gS", function() require("treesj").split() end, desc = "Split node" },
+      { "gJ", function() require("treesj").join() end, desc = "Join node" },
+    },
+    opts = { use_default_keymaps = false },
+  },
 }
